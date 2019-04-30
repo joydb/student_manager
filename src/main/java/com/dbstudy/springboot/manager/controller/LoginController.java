@@ -50,7 +50,7 @@ public class LoginController {
             case "teacher":{
                 TeaDao teacher=teacherUtil.queryTeacher(id);
                 if(teacher!=null&&teacher.getTeaPass().equals(password)){
-                    return "teacher";
+                    return "teaHome";
                 }
                 break;
             }

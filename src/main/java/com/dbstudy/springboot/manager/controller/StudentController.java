@@ -66,7 +66,7 @@ public class StudentController {
                 map.put("clsName",classes.getClaName());
             }
             else {
-                map.put("clsName","为分配班级");
+                map.put("clsName","未分配班级");
             }
         }
         return "studentInfo";

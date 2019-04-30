@@ -126,61 +126,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>菜单</a>
+                        <a th:href="@{/teacher/home}"><i class="fa fa-dashboard fa-fw nav_icon"></i>菜单</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-laptop nav_icon"></i>选项<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-laptop nav_icon"></i>基本功能<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/student/studentInfo}">基本信息</a>
+                                <a th:href="@{/teacher/teaInfo}">个人基本信息</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-indent nav_icon"></i>学籍信息<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-indent nav_icon"></i>工作信息<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="graphs.html">Graphs</a>
+                                <a th:href="@{/teacher/student}">学生信息</a>
                             </li>
                             <li>
-                                <a href="typography.html">Typography</a>
+                                <a th:href="@{/teacher/claInfo}">班级信息</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-envelope nav_icon"></i>模拟考试<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-envelope nav_icon"></i>查询作业<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="inbox.html">必修科目</a>
+                                <a th:href="@{/teacher/claHome}">添加班级大作业</a>
                             </li>
                             <li>
-                                <a href="compose.html">选修科目</a>
+                                <a th:href="@{/teacher/stuHome}">单独增加学生作业</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a th:href="@{/student/studentTable}"><i class="fa fa-flask nav_icon"></i>作业情况</a>
+                        <a href="forms.html"><i class="fa fa-flask nav_icon"></i>未开发功能</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>选择科目<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>未开发<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="forms.html">必修课</a>
+                                <a href="forms.html">未开发</a>
                             </li>
                             <li>
-                                <a href="validation.html">选修课</a>
+                                <a href="validation.html">未开发</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table nav_icon"></i>个人成绩<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-table nav_icon"></i>返回功能<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="basic_tables.html">当前最高</a>
+                                <a th:href="@{/common/relogin}">返回至login</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -203,11 +203,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!-- /.navbar-static-side -->
     </nav>
-
     <div id="page-wrapper">
         <div class="graphs">
             <div class="grid_3 grid_4">
-                <h3 th:text="${homText}"></h3>
+                <h3>当前学生作业</h3>
                 <div class="bs-example">
                     <table class="table">
                         <tbody>

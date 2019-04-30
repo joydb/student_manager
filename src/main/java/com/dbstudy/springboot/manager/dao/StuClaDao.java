@@ -1,30 +1,25 @@
 package com.dbstudy.springboot.manager.dao;
-// 基础表（学生）学号 姓名 性别 年龄 班级 密码
-public class StuDao {
+
+public class StuClaDao {
     private int stuId;
     private String stuName;
     private String stuSex;
     private int stuAge;
     private int clsId;
     private String stuPass;
+    private String claName;
+
     @Override
     public String toString() {
-        return "StuDao{" +
+        return "StuClaDao{" +
                 "stuId=" + stuId +
                 ", stuName='" + stuName + '\'' +
                 ", stuSex='" + stuSex + '\'' +
                 ", stuAge=" + stuAge +
                 ", clsId=" + clsId +
                 ", stuPass='" + stuPass + '\'' +
+                ", claName='" + claName + '\'' +
                 '}';
-    }
-
-    public String getStuPass() {
-        return stuPass;
-    }
-
-    public void setStuPass(String stuPass) {
-        this.stuPass = stuPass;
     }
 
     public int getStuId() {
@@ -65,5 +60,21 @@ public class StuDao {
 
     public void setClsId(int clsId) {
         this.clsId = clsId;
+    }
+
+    public String getStuPass() {
+        return stuPass;
+    }
+
+    public void setStuPass(String stuPass) {
+        this.stuPass = stuPass;
+    }
+
+    public String getClaName() {
+        return claName;
+    }
+
+    public void setClaName(String claName) {
+        this.claName = claName;
     }
 }
