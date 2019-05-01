@@ -106,17 +106,17 @@ public class StudentController {
         int stuId=Integer.parseInt(stu);
         System.out.println(answer);
         thisHomService.setThisHom(homId,stuId,answer);
-        this.studentHom(session,homId,map);
 
+        return this.studentHom(session,homId,map);
         //return "redirect:/student/homText";
         //return null;
 
 
 
-        ThisHomText home=thisHomService.getThisHom(stuId,homId);
-        String homText=homService.queryHomeById(homId).getWorkText();
-        map.put("homText",homText);
-        map.put("answer",home.getAnswer());
-        return "stuHomFrom";
+//        ThisHomText home=thisHomService.getThisHom(stuId,homId);
+//        String homText=homService.queryHomeById(homId).getWorkText();
+//        map.put("homText",homText);
+//        map.put("answer",home.getAnswer());
+//        return "stuHomFrom";
     }
 }

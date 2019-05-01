@@ -31,7 +31,4 @@ public class HelpServiceUtil {
             }
         });
     }
-    public int insertIntoShHelp(){
-        return 0;
-    }
 }

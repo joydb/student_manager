@@ -24,11 +24,11 @@ public class TeacherUtil {
     // 编号 姓名 性别 年龄  密码
     //插入
     public int addTeacher(TeaDao teacher) {
-        String sql="insert into student values(?,?,?,?,?);";
-        List<Object> list=new ArrayList<>();
-        list.add(new Object[]{
-                teacher.getTeaId(),
-                teacher.getTeaName()});
+        String sql="insert into teacher values(?,?,?,?,?);";
+//        List<Object> list=new ArrayList<>();
+//        list.add(new Object[]{
+//                teacher.getTeaId(),
+//                teacher.getTeaName()});
         int result=this.myJdbcTemplate.update(sql, new PreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement preparedStatement) throws SQLException {

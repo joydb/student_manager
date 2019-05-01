@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Typography</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -11,18 +11,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link th:href="@{/css/bootstrap.min.css}" rel='stylesheet' type='text/css' />
     <!-- Custom CSS -->
     <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+    <!-- Graph CSS -->
+    <link th:href="@{/css/lines.css}" rel='stylesheet' type='text/css' />
     <link th:href="@{/css/font-awesome.css}" rel="stylesheet">
     <!-- jQuery -->
     <script th:src="@{/js/jquery.min.js}"></script>
     <!----webfonts--->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>-->
     <!---//webfonts--->
-    <!-- Bootstrap Core JavaScript -->
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- Nav CSS -->
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <!-- Metis Menu Plugin JavaScript -->
+    <script th:src="@{/js/metisMenu.min.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+    <!-- Graph JavaScript -->
+    <script th:src="@{/js/d3.v3.js}"></script>
+    <script th:src="@{/js/rickshaw.js}"></script>
 </head>
 <body>
 <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -162,7 +169,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-flask nav_icon"></i>未开发功能</a>
+                        <a th:href="@{/student/studentTable}"><i class="fa fa-flask nav_icon"></i>未开发功能</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-check-square-o nav_icon"></i>未开发<span class="fa arrow"></span></a>
@@ -180,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="#"><i class="fa fa-table nav_icon"></i>返回功能<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/common/relogin}">返回至login</a>
+                                <a th:href="@{/teacher/relogin}">返回至login</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -204,42 +211,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- /.navbar-static-side -->
     </nav>
     <div id="page-wrapper">
-        <div class="graphs">
-            <div class="grid_3 grid_4">
-                <h3>当前学生作业</h3>
-                <div class="bs-example">
-                    <!--<table class="table">-->
-                        <!--<tbody>-->
-                        <tr>
-                            <td><h4 th:id="h4">请将作业内容发布在输入框中，确认输入后提交。提交后作业会发送给老师，老师批改完成后作业变为完成状态。本次作业要求如下：
-                                </br>请认真完成作业<a class="anchorjs-link" href="#h1.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h4></td>
-                            <td class="type-info">请认真阅读要求</td>
-                        </tr>
-                        <!--</tbody>-->
-                    <!--</table>-->
-                </div>
-            </div>
-            <table>
-                <tr th:each="info,infoStat : ${stuHomes}">
-            <div class="grid_3 grid_5">
-                <form th:action="@{/teacher/finishStu}">
-                    <h3>学生答案框</h3>
-                    <textarea th:name="answer"  class="form-control" rows="3" th:text="${info.getAnswer()}"></textarea>
-                    <h3>老师批改框</h3>
-                    <textarea th:name="isFinish" class="form-control" rows="3"></textarea>
-                    <input th:value="提交批改" type="submit" class="btn btn_5 btn-lg btn-primary">
-                    <input th:name="stuId" style="display: none;"  th:value="${info.getStuId()}">
-                    <input th:name="homId" style="display: none;"  th:value="${info.getHomId()}">
-                </form>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>学生学号</th>
+                    <th>学生名称</th>
+                    <th>学生性别</th>
+                    <th>学生班级</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="active" th:each="info,infoStat : ${stuInfo}">
+                    <th th:scope="row" th:text="${infoStat.index+1}"></th>
+                    <td th:text="${info.getStuId()}"></td>
+                    <td th:text="${info.getStuName()}"></td>
+                    <td th:text="${info.getStuSex()}"></td>
+                    <td th:text="${info.getClaName()}"></td>
+                </tr>
+                </tbody>
             </table>
-            <div class="copy_layout">
-                <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">作业管理</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">作业管理</a></p>
-            </div>
-        </div>
-            </tr>
+        </div><!-- /.table-responsive -->
     </div>
-    <!-- /#page-wrapper -->
+</div>
+<div class="copy_layout">
+    <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+</div>
+</div>
+</div>
+<!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
 <!-- Nav CSS -->

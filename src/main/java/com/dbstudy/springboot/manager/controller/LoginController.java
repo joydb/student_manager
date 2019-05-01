@@ -1,7 +1,9 @@
 package com.dbstudy.springboot.manager.controller;
 
+import com.dbstudy.springboot.manager.dao.ManagerDao;
 import com.dbstudy.springboot.manager.dao.StuDao;
 import com.dbstudy.springboot.manager.dao.TeaDao;
+import com.dbstudy.springboot.manager.service.ManagerService;
 import com.dbstudy.springboot.manager.service.StudentUtil;
 import com.dbstudy.springboot.manager.service.TeacherUtil;
 import org.slf4j.Logger;
@@ -23,6 +25,10 @@ public class LoginController {
     private StudentUtil studentUtil;
     @Autowired
     private TeacherUtil teacherUtil;
+
+    @Autowired
+    private ManagerService managerService;
+
     @RequestMapping("/user/login")
     public String firstLogin(@RequestParam("id")int id,
                              @RequestParam("password") String password,
@@ -55,6 +61,10 @@ public class LoginController {
                 break;
             }
             case "manager":{
+                ManagerDao manager=managerService.queryManagerById(id);
+                if (manager!=null&&manager.getManPass().equals(password)) {
+                    return "manHome";
+                }
                 break;
             }
         }

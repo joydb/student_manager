@@ -126,61 +126,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a th:href="@{/teacher/home}"><i class="fa fa-dashboard fa-fw nav_icon"></i>菜单</a>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>菜单</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-laptop nav_icon"></i>基本功能<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-laptop nav_icon"></i>选项<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/teacher/teaInfo}">个人基本信息</a>
+                                <a th:href="@{/student/studentInfo}">基本信息</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-indent nav_icon"></i>工作信息<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-indent nav_icon"></i>学籍信息<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/teacher/student}">学生信息</a>
+                                <a href="graphs.html">Graphs</a>
                             </li>
                             <li>
-                                <a th:href="@{/teacher/claInfo}">班级信息</a>
+                                <a href="typography.html">Typography</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-envelope nav_icon"></i>查询作业<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-envelope nav_icon"></i>模拟考试<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/teacher/claHome}">添加班级大作业</a>
+                                <a href="inbox.html">必修科目</a>
                             </li>
                             <li>
-                                <a th:href="@{/teacher/stuHome}">单独增加学生作业</a>
+                                <a href="compose.html">选修科目</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-flask nav_icon"></i>未开发功能</a>
+                        <a th:href="@{/student/studentTable}"><i class="fa fa-flask nav_icon"></i>作业情况</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>未开发<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>选择科目<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="forms.html">未开发</a>
+                                <a href="forms.html">必修课</a>
                             </li>
                             <li>
-                                <a href="validation.html">未开发</a>
+                                <a href="validation.html">选修课</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table nav_icon"></i>返回功能<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-table nav_icon"></i>个人成绩<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/common/relogin}">返回至login</a>
+                                <a href="basic_tables.html">当前最高</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -203,41 +203,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!-- /.navbar-static-side -->
     </nav>
+
     <div id="page-wrapper">
         <div class="graphs">
             <div class="grid_3 grid_4">
-                <h3>当前学生作业</h3>
+                <h3>作业发布页面</h3>
                 <div class="bs-example">
-                    <!--<table class="table">-->
-                        <!--<tbody>-->
+                    <table class="table">
+                        <tbody>
                         <tr>
-                            <td><h4 th:id="h4">请将作业内容发布在输入框中，确认输入后提交。提交后作业会发送给老师，老师批改完成后作业变为完成状态。本次作业要求如下：
+                            <td><h4 th:id="h4">请将作业内容发布在输入框中，确认输入后提交。本次作业要求如下：
                                 </br>请认真完成作业<a class="anchorjs-link" href="#h1.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h4></td>
                             <td class="type-info">请认真阅读要求</td>
                         </tr>
-                        <!--</tbody>-->
-                    <!--</table>-->
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <table>
-                <tr th:each="info,infoStat : ${stuHomes}">
             <div class="grid_3 grid_5">
-                <form th:action="@{/teacher/finishStu}">
-                    <h3>学生答案框</h3>
-                    <textarea th:name="answer"  class="form-control" rows="3" th:text="${info.getAnswer()}"></textarea>
-                    <h3>老师批改框</h3>
-                    <textarea th:name="isFinish" class="form-control" rows="3"></textarea>
-                    <input th:value="提交批改" type="submit" class="btn btn_5 btn-lg btn-primary">
-                    <input th:name="stuId" style="display: none;"  th:value="${info.getStuId()}">
-                    <input th:name="homId" style="display: none;"  th:value="${info.getHomId()}">
+                <h3>作业发布输入框</h3>
+                <form th:action="@{/teacher/stuHomSub}">
+                    <textarea th:name="homeWork"  class="form-control" rows="3"></textarea>
+                    <input type="submit" class="btn btn_5 btn-lg btn-primary">
+                    <input th:name="stuId" th:value="${stuId}" type="submit" style="display: none;" />
                 </form>
             </div>
-            </table>
             <div class="copy_layout">
                 <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">作业管理</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">作业管理</a></p>
             </div>
         </div>
-            </tr>
     </div>
     <!-- /#page-wrapper -->
 </div>
