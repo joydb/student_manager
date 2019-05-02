@@ -1,9 +1,6 @@
 package com.dbstudy.springboot.manager.controller;
 
-import com.dbstudy.springboot.manager.dao.ClassesDao;
-import com.dbstudy.springboot.manager.dao.StuDao;
-import com.dbstudy.springboot.manager.dao.ThisHomText;
-import com.dbstudy.springboot.manager.dao.stuHomeDao;
+import com.dbstudy.springboot.manager.dao.*;
 import com.dbstudy.springboot.manager.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +39,9 @@ public class StudentController {
 
     @Autowired
     private HomService homService;
+
+    @Autowired
+    private StuIsFinishService stuIsFinishService;
     //1.查询学生的基本信息
     //基础表（学生）学号 姓名 性别 年龄 班级 密码
     //name stuId sex age clsName
@@ -118,5 +118,15 @@ public class StudentController {
 //        map.put("homText",homText);
 //        map.put("answer",home.getAnswer());
 //        return "stuHomFrom";
+    }
+    //5.查看老师批改的作业
+    @RequestMapping("/student/isFinish")
+    public String queryIsFinish(HttpSession session,
+                                Map<String,Object> map){
+        String id=session.getAttribute("userId").toString();
+        int stuId=Integer.parseInt(id);
+        List<StuIsFinishDao> isFinishs=stuIsFinishService.getStuIsFinish(stuId);
+        map.put("stuIsFinish",isFinishs);
+        return "stuIsFinishTable";
     }
 }

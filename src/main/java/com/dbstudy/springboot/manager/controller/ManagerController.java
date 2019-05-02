@@ -1,10 +1,7 @@
 package com.dbstudy.springboot.manager.controller;
 
 import com.dbstudy.springboot.manager.dao.*;
-import com.dbstudy.springboot.manager.service.ClassUtil;
-import com.dbstudy.springboot.manager.service.ManagerService;
-import com.dbstudy.springboot.manager.service.TeaStuInfoService;
-import com.dbstudy.springboot.manager.service.TeacherUtil;
+import com.dbstudy.springboot.manager.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,9 @@ public class ManagerController {
 
     @Autowired
     private TeaStuInfoService teaStuInfoService;
+
+    @Autowired
+    private StudentUtil studentUtil;
 
     //1.回到菜单
     @RequestMapping("/manager/home")
@@ -121,10 +121,12 @@ public class ManagerController {
     //9.增加学生
     @RequestMapping("/manager/addStudent")
     public String manAddStudent(Map<String,Object> map){
+        List<ClassesDao> claList=classUtil.queryAllCls();
+        map.put("allClass",claList);
         return "manStuAdd";
     }
     //9.1增加学生提交
-    //4.增加老师提交
+    //10.增加老师提交
     @RequestMapping("/manager/addSruSub")
     public String addStudentSub(String id,
                                 String name,
@@ -134,12 +136,18 @@ public class ManagerController {
                                 int claId,
                                 Map<String,Object> map){
         Logger logger=LoggerFactory.getLogger(this.getClass());
-        logger.info("增加学生：{id:"+id+"name:"+name+"age:"+age+"sex:"+sex+"password"+password);
+        logger.info("增加学生：{id:"+id+"name:"+name+"age:"+age+"sex:"+sex+"password"+password+"claId"+claId);
         try{
             int stuId=Integer.parseInt(id);
             int stuAge=Integer.parseInt(age);
             StuDao student=new StuDao();
-
+            student.setStuId(stuId);
+            student.setStuName(name);
+            student.setStuSex(sex);
+            student.setStuAge(stuAge);
+            student.setClsId(claId);
+            student.setStuPass(password);
+            studentUtil.addStudent(student);
         }catch (Exception exception){
             map.put("msg","输入有误");
         }

@@ -1,6 +1,6 @@
 package com.dbstudy.springboot.manager.service;
 
-import com.dbstudy.springboot.manager.dao.StuDao;
+import com.dbstudy.springboot.manager.dao.StuIsFinishDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,17 +9,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
-public class TeaStuHomeService {
+public class StuIsFinishService {
     @Autowired
     private JdbcTemplate myJdbcTemplate;
 
-    public List<StuDao> getTeaStuHom(int id){
-        String sql="  select stu_id,stu_name, stu_sex from student where cla_id in (\n" +
-                "    select cla_id from ct_help where tea_id = ?\n" +
-                "  );";
-        RowMapper<StuDao> rowMapper=new BeanPropertyRowMapper(StuDao.class);
+    public List<StuIsFinishDao> getStuIsFinish(int id){
+       String sql="select stu_name,isFinish,answer from student,sh_help\n" +
+               "where student.stu_id = 1 and sh_help.stu_id=?;";
+        RowMapper<StuIsFinishDao> rowMapper=new BeanPropertyRowMapper<>(StuIsFinishDao.class);
         return this.myJdbcTemplate.query(sql,rowMapper,id);
     }
+
 }

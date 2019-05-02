@@ -160,25 +160,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="#"><i class="fa fa-envelope nav_icon"></i>查询作业<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/teacher/claHome}">按班级批改</a>
+                                <a th:href="@{/teacher/claHome}">添加班级大作业</a>
                             </li>
                             <li>
-                                <a th:href="@{/teacher/stuHome}">按学生批改</a>
+                                <a th:href="@{/teacher/stuHome}">单独增加学生作业</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a th:href="@{/student/studentTable}"><i class="fa fa-flask nav_icon"></i>未开发功能</a>
+                        <a href="forms.html"><i class="fa fa-flask nav_icon"></i>未开发功能</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>未开发<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>布置作业<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="forms.html">未开发</a>
+                                <a th:href="@{/teacher/givClaHom}">按班级布置</a>
                             </li>
                             <li>
-                                <a href="validation.html">未开发</a>
+                                <a th:href="@{/teacher/givStuHom}">按学生布置</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -187,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="#"><i class="fa fa-table nav_icon"></i>返回功能<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/teacher/relogin}">返回至login</a>
+                                <a th:href="@{/common/relogin}">返回至login</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
