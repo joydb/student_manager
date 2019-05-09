@@ -57,7 +57,9 @@ public class StudentController {
             map.put("sex","男");
         }
         //性别默认为女
-        map.put("sex","女");
+        else {
+            map.put("sex","女");
+        }
         map.put("age",student.getStuAge());
         Integer clsId=student.getClsId();
         if(clsId!=null){
@@ -104,9 +106,8 @@ public class StudentController {
         String stu=session.getAttribute("userId").toString();
         int homId=Integer.parseInt(hom);
         int stuId=Integer.parseInt(stu);
-        System.out.println(answer);
-        thisHomService.setThisHom(homId,stuId,answer);
-
+        thisHomService.setThisHom(stuId,homId,answer);
+        System.out.println("当前homeId："+homId+"当前stuId:"+stuId+"当前answer:"+answer);
         return this.studentHom(session,homId,map);
         //return "redirect:/student/homText";
         //return null;
@@ -128,5 +129,10 @@ public class StudentController {
         List<StuIsFinishDao> isFinishs=stuIsFinishService.getStuIsFinish(stuId);
         map.put("stuIsFinish",isFinishs);
         return "stuIsFinishTable";
+    }
+    //6.学生菜单/student/stuHome
+    @RequestMapping("/student/stuHome")
+    public String goHome(){
+        return "studentHome";
     }
 }

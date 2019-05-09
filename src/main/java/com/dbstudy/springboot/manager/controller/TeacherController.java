@@ -39,11 +39,14 @@ public class TeacherController {
         map.put("name",teacher.getTeaName());
         map.put("stuId",teacher.getTeaId());
         String sex=teacher.getTeaSex();
+        System.out.println("老师的性别为"+teacher.getTeaSex());
         if("man".equals(sex)){
             map.put("sex","男");
         }
         //性别默认为女
-        map.put("sex","女");
+        else {
+            map.put("sex","女");
+        }
         map.put("age",teacher.getTeaAge());
         return "teaInfo";
     }
