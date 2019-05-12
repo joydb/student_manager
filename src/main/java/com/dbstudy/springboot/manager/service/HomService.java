@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class HomService {
@@ -21,6 +22,13 @@ public class HomService {
         RowMapper<HomDao> rowMapper=new BeanPropertyRowMapper<>(HomDao.class);
         HomDao home=this.myJdbcTemplate.queryForObject(sql,rowMapper,id);
         return home;
+    }
+
+    public List<HomDao> queryAllHome(){
+        String sql="select *  from homework;";
+        RowMapper<HomDao> rowMapper=new BeanPropertyRowMapper<>(HomDao.class);
+        List<HomDao> homework=this.myJdbcTemplate.query(sql,rowMapper);
+        return homework;
     }
 
     public int insertHome(int homId,String workText){

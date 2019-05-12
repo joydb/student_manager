@@ -29,6 +29,11 @@ public class TeacherController {
     @Autowired
     private TeaClaInfoService teaClaInfoService;
 
+    @Autowired
+    private TeaDelHomeService teaDelHomeService;
+
+    @Autowired
+    private HomService homService;
     //1.查询老师基本信息
     @RequestMapping("/teacher/teaInfo")
     public String getTeaInfo(HttpSession session,
@@ -94,5 +99,19 @@ public class TeacherController {
     @RequestMapping("/teacher/home")
     public String reTeaHome(){
         return "teaHome";
+    }
+    //7.删除作业功能
+    @RequestMapping("/teacher/delhome")
+    public String delHomeWorkTable(Map<String,Object> map){
+        //作业id  作业内容
+        List<HomDao> homework=homService.queryAllHome();
+        map.put("homework",homework);
+        return "teaHomDelTable";
+    }
+    @RequestMapping("/teacher/delHomForm")
+    public String delHomeWorkForm(int homId,
+                                  Map<String,Object> map){
+        teaDelHomeService.teaDelHome(homId);
+        return this.delHomeWorkTable(map);
     }
 }

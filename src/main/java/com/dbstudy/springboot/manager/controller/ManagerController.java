@@ -91,6 +91,13 @@ public class ManagerController {
         map.put("teachers",teachers);
         return "manAllTeacher";
     }
+    //删除老师
+    @RequestMapping("/manager/delTea")
+    public String manDelTea(int teaId,
+                            Map<String,Object> map){
+        teacherUtil.deleteTeacher(teaId);
+        return this.queryAllTeacher(map);
+    }
     //6.查看所有班级
     @RequestMapping("/manager/allClasses")
     public String queryAllClass(Map<String,Object> map){
@@ -161,5 +168,12 @@ public class ManagerController {
         List<StuClaDao> stuInfo=teaStuInfoService.getTeaStuInfo();
         map.put("stuInfo",stuInfo);
         return "manAllStudent";
+    }
+    //删除学生
+    @RequestMapping("/manager/delStudent")
+    public String manDelStu(int stuId,
+                            Map<String,Object> map){
+        studentUtil.deleteStudent(stuId);
+        return this.manAllStudent(map);
     }
 }

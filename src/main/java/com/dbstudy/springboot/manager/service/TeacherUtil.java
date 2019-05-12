@@ -46,7 +46,7 @@ public class TeacherUtil {
     }
     //删除
     public int deleteTeacher(int id){
-        String sql="delete from teacher where id = ?;";
+        String sql="delete from teacher where tea_id = ?;";
         return this.myJdbcTemplate.update(sql,id);
     }
     //修改
