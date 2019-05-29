@@ -90,7 +90,7 @@ public class TeacherController {
         String teaId=session.getAttribute("userId").toString();
         int id=Integer.parseInt(teaId);
         List<StuDao> stuHome=this.stuHomeService.getTeaStuHom(id);
-        System.out.println(stuHome);
+        //System.out.println(stuHome);
 
         map.put("stuHom",stuHome);
         return "teaStuHome";

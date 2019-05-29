@@ -88,7 +88,8 @@ public class TeaForHomController {
                 (select stu_id,stu_name from student where cla_id = 1) as a
                 where a.stu_id=sh_help.stu_id;
          */
-        List<SHhelpDao> stuHomes=this.teaOneStuHomService.getClaHome(claHomD.getClaId());
+        System.out.println("班级名称"+claHomD.getClaId());
+        List<SHhelpDao> stuHomes=this.teaOneStuHomService.getClaHome(claHomD.getClaId()+1);
         map.put("stuHome",stuHomes);
         return "teaSetCla";
     }
@@ -155,7 +156,7 @@ public class TeaForHomController {
         String temp=stuId.toString();
         System.out.println("我是temp"+temp);
         int id=Integer.parseInt(temp);
-        System.out.println("我是stuID"+id);
+        //System.out.println("我是stuID"+id);
         this.teaGivStuService.teaGivStuService(this.stuId,homeWork);
         return this.givOneStudent(this.stuId,map);
     }

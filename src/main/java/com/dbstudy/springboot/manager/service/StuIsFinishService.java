@@ -16,9 +16,11 @@ public class StuIsFinishService {
 
     public List<StuIsFinishDao> getStuIsFinish(int id){
        String sql="select stu_name,isFinish,answer from student,sh_help\n" +
-               "where student.stu_id = 1 and sh_help.stu_id=?;";
+               "where student.stu_id = ? and sh_help.stu_id=?;";
+//        String sql="select stu_name,isFinish,answer from student,sh_help\n" +
+//                "where stu_id=?;";
         RowMapper<StuIsFinishDao> rowMapper=new BeanPropertyRowMapper<>(StuIsFinishDao.class);
-        return this.myJdbcTemplate.query(sql,rowMapper,id);
+        return this.myJdbcTemplate.query(sql,rowMapper,id,id);
     }
 
 }

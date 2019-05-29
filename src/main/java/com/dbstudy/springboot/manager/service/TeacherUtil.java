@@ -42,6 +42,7 @@ public class TeacherUtil {
         if(result==0) {
             System.out.println("插入失败");
         }
+        System.out.println("添加老师返回"+result);
         return result;
     }
     //删除

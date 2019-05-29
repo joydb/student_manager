@@ -62,7 +62,7 @@ public class ManagerController {
                                 String password,
                                 Map<String,Object> map){
         Logger logger=LoggerFactory.getLogger(this.getClass());
-        logger.info("增加老师：{id:"+id+"name:"+name+"age:"+age+"sex:"+sex+"password"+password);
+        logger.info("增加老师：{id:"+id+"name:"+name+"  age:"+age+"  sex:"+sex+"  password："+password+"}");
         try{
             //
 //        private int teaId;
@@ -79,10 +79,12 @@ public class ManagerController {
             teacher.setTeaPass(password);
             teacher.setTeaSex(sex);
             teacherUtil.addTeacher(teacher);
+           // System.out.println("已添加老师");
         }catch (Exception exception){
             map.put("msg","输入有误");
         }
-        return this.addTeacher();
+        //return this.addTeacher();
+        return this.queryAllTeacher(map);
     }
     //5.查看所有老师
     @RequestMapping("/manager/queryAllTea")
@@ -119,7 +121,7 @@ public class ManagerController {
     public String teaAddClaSub(int claId,
                                int teaId,
                                Map<String,Object> map){
-        System.out.println("班级Id:"+claId+"   老师Id:"+teaId);
+       // System.out.println("班级Id:"+claId+"   老师Id:"+teaId);
         managerService.addTeaForCla(claId,teaId);
         return this.queryAllClass(map);
     }
@@ -133,6 +135,26 @@ public class ManagerController {
         return "manStuAdd";
     }
     //9.1增加学生提交
+    @RequestMapping("/manager/addStuSub")
+    public String manAddStuSub(int id,
+                               String name,
+                               int age,
+                               int claId,
+                               String sex,
+                               String password,
+                               Map<String,Object> map){
+        Logger logger=LoggerFactory.getLogger(this.getClass());
+        logger.info("学生id:"+id+"学生姓名:"+name+"学生年龄:"+age+"班级id:"+claId+"学生性别:"+sex+"学生密码："+password);
+        StuDao student=new StuDao();
+        student.setStuId(id);
+        student.setStuName(name);
+        student.setStuAge(age);
+        student.setClsId(claId);
+        student.setStuSex(sex);
+        student.setStuPass(password);
+        studentUtil.addStudent(student);
+        return this.manAllStudent(map);
+    }
     //10.增加老师提交
     @RequestMapping("/manager/addSruSub")
     public String addStudentSub(String id,

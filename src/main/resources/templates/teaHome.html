@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div id="wrapper">
     <!-- Navigation -->
-    <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <nav th:fragment="teaNavigator" class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -157,13 +157,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-envelope nav_icon"></i>批改作业<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-envelope nav_icon"></i>查看作业<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a th:href="@{/teacher/claHome}">批改班级大作业</a>
+                                <a th:href="@{/teacher/claHome}">查看班级大作业</a>
                             </li>
                             <li>
-                                <a th:href="@{/teacher/stuHome}">单独批改学生作业</a>
+                                <a th:href="@{/teacher/stuHome}">单独查看学生作业</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

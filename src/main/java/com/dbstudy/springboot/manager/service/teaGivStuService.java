@@ -19,7 +19,11 @@ public class teaGivStuService {
 //        RowMapper<Integer> rowMapper=new BeanPropertyRowMapper(Integer.class);
 //        Integer maxHome=this.myJdbcTemplate.queryForObject(sql1,rowMapper);
         String sql1="select max(hom_id) from homework";
-        int maxHome=this.myJdbcTemplate.queryForObject(sql1,Integer.class);
+        Integer maxHome;
+        maxHome=this.myJdbcTemplate.queryForObject(sql1,Integer.class);
+        if(maxHome==null){
+            maxHome=0;
+        }
         Integer homeId=maxHome+1;
         String sql2="insert  into homework value (?,?)";
         this.myJdbcTemplate.update(sql2, new PreparedStatementSetter() {
